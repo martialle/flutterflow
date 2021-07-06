@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "293505531659",
+    "project_id": "futurafricmobile",
+    "storage_bucket": "futurafricmobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293505531659:android:5e508f006cb36112e06c0e",
+        "android_client_info": {
+          "package_name": "com.flutterflow.futuafricmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293505531659-djs2a8ba7msvoijo6dfdq36tdlg88t1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARx5LHxJhbWxW3AGRafsrzgGSbZ10YpfI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293505531659-djs2a8ba7msvoijo6dfdq36tdlg88t1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
