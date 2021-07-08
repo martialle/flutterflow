@@ -3,7 +3,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     // WARNING! ONLY FOR TEST MODE: Make sure you properly configure the
     // security rules for this collection before publishing your app.
-    match /users/{id} {
+    match /inscription/{id} {
       allow read, write: if true;
     }
   }

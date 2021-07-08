@@ -29,6 +29,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
   TextEditingController textController5;
   TextEditingController textController6;
   TextEditingController textController7;
+  TextEditingController textController8;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -36,11 +37,12 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
     super.initState();
     textController1 = TextEditingController(text: 'Numero de telephone');
     textController2 = TextEditingController(text: 'Poids');
-    textController3 = TextEditingController(text: 'Mot de pass');
-    textController4 = TextEditingController(text: 'Nom & prenom');
+    textController3 = TextEditingController(text: 'Password');
+    textController4 = TextEditingController(text: 'Nom ');
     textController5 = TextEditingController(text: 'Genre');
     textController6 = TextEditingController(text: 'Taille');
-    textController7 = TextEditingController(text: 'Confirmer le mot de pass');
+    textController7 = TextEditingController(text: ' prenom');
+    textController8 = TextEditingController(text: 'Confirmer le mot de pass');
   }
 
   @override
@@ -89,7 +91,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
         child: Stack(
           children: [
             Align(
-              alignment: Alignment(0, 0.35),
+              alignment: Alignment(0, 0.45),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                 child: TextFormField(
@@ -139,7 +141,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
               ),
             ),
             Align(
-              alignment: Alignment(0, 0.21),
+              alignment: Alignment(0, 0.31),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
                 child: TextFormField(
@@ -189,7 +191,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
               ),
             ),
             Align(
-              alignment: Alignment(0, 0.5),
+              alignment: Alignment(0, 0.61),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
                 child: TextFormField(
@@ -239,7 +241,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
               ),
             ),
             Align(
-              alignment: Alignment(0, -0.29),
+              alignment: Alignment(0, -0.31),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                 child: TextFormField(
@@ -289,7 +291,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
               ),
             ),
             Align(
-              alignment: Alignment(0, 0.03),
+              alignment: Alignment(0, 0.15),
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
                 child: TextFormField(
@@ -339,7 +341,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
               ),
             ),
             Align(
-              alignment: Alignment(0, -0.13),
+              alignment: Alignment(0, 0),
               child: TextFormField(
                 controller: textController6,
                 obscureText: false,
@@ -386,7 +388,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
               ),
             ),
             Align(
-              alignment: Alignment(0, 0.71),
+              alignment: Alignment(0, -0.15),
               child: TextFormField(
                 controller: textController7,
                 obscureText: false,
@@ -434,7 +436,7 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
               ),
             ),
             Align(
-              alignment: Alignment(0.01, 0.93),
+              alignment: Alignment(-0.08, 1),
               child: InkWell(
                 onDoubleTap: () async {
                   await Navigator.push(
@@ -537,6 +539,54 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
                   'assets/images/attractive-1869761_1920.jpg',
                   fit: BoxFit.fitHeight,
                 ),
+              ),
+            ),
+            Align(
+              alignment: Alignment(0, 0.79),
+              child: TextFormField(
+                controller: textController8,
+                obscureText: false,
+                decoration: InputDecoration(
+                  isDense: true,
+                  hintText: '[Some hint text...]',
+                  hintStyle: FlutterFlowTheme.bodyText1.override(
+                    fontFamily: 'Poppins',
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.tertiaryColor,
+                      width: 200,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50),
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.tertiaryColor,
+                      width: 200,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50),
+                    ),
+                  ),
+                  contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                ),
+                style: FlutterFlowTheme.bodyText1.override(
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+                textAlign: TextAlign.center,
               ),
             )
           ],
