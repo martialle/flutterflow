@@ -34,3 +34,23 @@ Stream<List<T>> queryCollection<T>(
       .map((d) => serializers.deserializeWith(serializer, serializedData(d)))
       .toList());
 }
+
+// Creates a Firestore record representing the logged in user if it doesn't yet exist
+Future maybeCreateUser(User user) async {
+  final userRecord = InscriptionRecord.collection.doc(user.uid);
+  final userExists = await userRecord.get().then((u) => u.exists);
+  if (userExists) {
+    return;
+  }
+
+  final userData = createInscriptionRecordData(
+    email: user.email,
+    displayName: user.displayName,
+    photoUrl: user.photoURL,
+    uid: user.uid,
+    phoneNumber: user.phoneNumber,
+    createdTime: getCurrentTimestamp,
+  );
+
+  await userRecord.set(userData);
+}
