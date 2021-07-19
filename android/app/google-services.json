@@ -1,34 +1,42 @@
 {
   "project_info": {
-    "project_number": "293505531659",
-    "project_id": "futurafricmobile",
-    "storage_bucket": "futurafricmobile.appspot.com"
+    "project_number": "157295724111",
+    "firebase_url": "https://engineering-titan-palu-prod-default-rtdb.firebaseio.com",
+    "project_id": "engineering-titan-palu-prod",
+    "storage_bucket": "engineering-titan-palu-prod.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:293505531659:android:5e508f006cb36112e06c0e",
+        "mobilesdk_app_id": "1:157295724111:android:24cc1afb3f694a0b664c3a",
         "android_client_info": {
           "package_name": "com.flutterflow.futuafricmobile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "293505531659-djs2a8ba7msvoijo6dfdq36tdlg88t1q.apps.googleusercontent.com",
+          "client_id": "157295724111-gua6atk4tqnmmur0gdht1i3ke07d45g0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyARx5LHxJhbWxW3AGRafsrzgGSbZ10YpfI"
+          "current_key": "AIzaSyAnqwwPrwaohBfxzvTIoyIvDWMwMmJN0dQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "293505531659-djs2a8ba7msvoijo6dfdq36tdlg88t1q.apps.googleusercontent.com",
+              "client_id": "157295724111-gua6atk4tqnmmur0gdht1i3ke07d45g0.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "157295724111-j2vqrofaspjl336228aog9mo9bum8lk7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flutterflow.futuafricmobile"
+              }
             }
           ]
         }

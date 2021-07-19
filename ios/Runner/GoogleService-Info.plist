@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>293505531659-988oiaeosddunhnq2e7n0ks8v7b6t5l9.apps.googleusercontent.com</string>
+	<string>157295724111-j2vqrofaspjl336228aog9mo9bum8lk7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.293505531659-988oiaeosddunhnq2e7n0ks8v7b6t5l9</string>
+	<string>com.googleusercontent.apps.157295724111-j2vqrofaspjl336228aog9mo9bum8lk7</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAsNNyXCvVNu2Cuy4kufmy4YO-X2WQiJNo</string>
+	<string>AIzaSyA8Mg1-IJ6Ya_vMhVvH-FfEtuXNxYdOStQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>293505531659</string>
+	<string>157295724111</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.flutterflow.futuafricmobile</string>
 	<key>PROJECT_ID</key>
-	<string>futurafricmobile</string>
+	<string>engineering-titan-palu-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>futurafricmobile.appspot.com</string>
+	<string>engineering-titan-palu-prod.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:293505531659:ios:64034be4cdb3e1cce06c0e</string>
+	<string>1:157295724111:ios:f7574e29bfb7c11e664c3a</string>
+	<key>DATABASE_URL</key>
+	<string>https://engineering-titan-palu-prod-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

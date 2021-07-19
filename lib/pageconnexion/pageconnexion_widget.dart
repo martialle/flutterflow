@@ -1,3 +1,4 @@
+import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -14,16 +15,16 @@ class PageconnexionWidget extends StatefulWidget {
 }
 
 class _PageconnexionWidgetState extends State<PageconnexionWidget> {
-  TextEditingController textController1;
-  TextEditingController textController2;
+  TextEditingController emailTextController;
+  TextEditingController passwordTextController;
   bool passwordVisibility;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController(text: '0501010101');
-    textController2 = TextEditingController(text: '222200');
+    emailTextController = TextEditingController(text: '0501010101');
+    passwordTextController = TextEditingController(text: '222200');
     passwordVisibility = false;
   }
 
@@ -115,7 +116,7 @@ class _PageconnexionWidgetState extends State<PageconnexionWidget> {
                           ),
                         ),
                         child: TextFormField(
-                          controller: textController1,
+                          controller: emailTextController,
                           obscureText: false,
                           decoration: InputDecoration(
                             hintText: '[Some hint text...]',
@@ -171,7 +172,7 @@ class _PageconnexionWidgetState extends State<PageconnexionWidget> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: TextFormField(
-                        controller: textController2,
+                        controller: passwordTextController,
                         obscureText: !passwordVisibility,
                         decoration: InputDecoration(
                           hintText: '[Some hint text...]',
@@ -240,8 +241,23 @@ class _PageconnexionWidgetState extends State<PageconnexionWidget> {
                           ),
                         ),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            final user = await signInWithEmail(
+                              context,
+                              emailTextController.text,
+                              passwordTextController.text,
+                            );
+                            if (user == null) {
+                              return;
+                            }
+
+                            await Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Pageiscription1Widget(),
+                              ),
+                              (r) => false,
+                            );
                           },
                           text: 'Connexion',
                           options: FFButtonOptions(

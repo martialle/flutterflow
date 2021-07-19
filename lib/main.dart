@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'auth/firebase_user_provider.dart';
 import 'package:futuafricmobile/pageconnexion/pageconnexion_widget.dart';
 import 'package:futuafricmobile/pageiscription1/pageiscription1_widget.dart';
+import 'flutter_flow/flutter_flow_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,8 +35,12 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(primarySwatch: Colors.blue),
       home: initialUser == null
           ? const Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Color(0xff4b39ef)),
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  color: FlutterFlowTheme.primaryColor,
+                ),
               ),
             )
           : currentUser.loggedIn

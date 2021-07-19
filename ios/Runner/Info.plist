@@ -25,7 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.293505531659-988oiaeosddunhnq2e7n0ks8v7b6t5l9</string>
+				<string>com.googleusercontent.apps.157295724111-j2vqrofaspjl336228aog9mo9bum8lk7</string>
         
 			</array>
 		</dict>
@@ -35,7 +35,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-
+	<key>NSCameraUsageDescription</key>
+	<string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>In order to upload media, this app requires permission to access the photo library.</string>
 
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -56,5 +59,6 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+
 </dict>
 </plist>

@@ -1,9 +1,10 @@
-import '../backend/backend.dart';
+import '../auth/auth_util.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
 import '../pageconnexion/pageconnexion_widget.dart';
-import '../pageinscription2/pageinscription2_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,27 +24,20 @@ class Pageiscription1Widget extends StatefulWidget {
 }
 
 class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
+  String uploadedFileUrl = '';
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
   TextEditingController textController4;
-  TextEditingController textController5;
-  TextEditingController textController6;
-  TextEditingController textController7;
-  TextEditingController textController8;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController(text: 'Numero de telephone');
-    textController2 = TextEditingController(text: 'Poids');
-    textController3 = TextEditingController(text: 'Password');
-    textController4 = TextEditingController(text: 'Nom ');
-    textController5 = TextEditingController(text: 'Genre');
-    textController6 = TextEditingController(text: 'Taille');
-    textController7 = TextEditingController(text: ' prenom');
-    textController8 = TextEditingController(text: 'Confirmer le mot de pass');
+    textController1 = TextEditingController();
+    textController2 = TextEditingController(text: 'phone_number');
+    textController3 = TextEditingController();
+    textController4 = TextEditingController();
   }
 
   @override
@@ -89,402 +83,78 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
       ),
       backgroundColor: Color(0xFF1087D6),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment(0, 0.47),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
-                      ),
-                    );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                    child: TextFormField(
-                      controller: textController1,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        hintText: '[Some hint text...]',
-                        hintStyle: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: FlutterFlowTheme.tertiaryColor,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      ),
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                },
+        child: InkWell(
+          onTap: () async {
+            final user = await signInWithGoogle(context);
+            if (user == null) {
+              return;
+            }
+            await Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Pageiscription1Widget(),
               ),
-            ),
-            Align(
-              alignment: Alignment(0, 0.32),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
-                      ),
-                    );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return Padding(
-                    padding: EdgeInsets.fromLTRB(0, 2, 0, 0),
-                    child: TextFormField(
-                      controller: textController2,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        hintText: '[Some hint text...]',
-                        hintStyle: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: FlutterFlowTheme.tertiaryColor,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      ),
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment(0, 0.61),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
-                      ),
-                    );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return Padding(
-                    padding: EdgeInsets.fromLTRB(0, 50, 0, 0),
-                    child: TextFormField(
-                      controller: textController3,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        hintText: '[Some hint text...]',
-                        hintStyle: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: Colors.black,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      ),
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment(0, -0.31),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
-                      ),
-                    );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return Padding(
-                    padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
-                    child: TextFormField(
-                      controller: textController4,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      ),
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment(0, 0.15),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
-                      ),
-                    );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return Padding(
-                    padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
-                    child: TextFormField(
-                      controller: textController5,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        hintText: '[Some hint text...]',
-                        hintStyle: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: FlutterFlowTheme.tertiaryColor,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.tertiaryColor,
-                            width: 200,
-                          ),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50),
-                          ),
-                        ),
-                        contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                      ),
-                      style: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment(0, 0),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
-                      ),
-                    );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return TextFormField(
-                    controller: textController6,
+              (r) => false,
+            );
+          },
+          child: Stack(
+            children: [
+              Align(
+                alignment: Alignment(0, -0.31),
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                  child: TextFormField(
+                    controller: textController1,
                     obscureText: false,
                     decoration: InputDecoration(
                       isDense: true,
-                      hintText: '[Some hint text...]',
+                      hintText: 'email',
+                      hintStyle: FlutterFlowTheme.subtitle2.override(
+                        fontFamily: 'Poppins',
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.tertiaryColor,
+                          width: 200,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(50),
+                          bottomRight: Radius.circular(50),
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.tertiaryColor,
+                          width: 200,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(50),
+                          bottomRight: Radius.circular(50),
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    ),
+                    style: FlutterFlowTheme.subtitle2.override(
+                      fontFamily: 'Poppins',
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment(0, 0.15),
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 7, 0, 0),
+                  child: TextFormField(
+                    controller: textController2,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      hintText: 'phone_number',
                       hintStyle: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Poppins',
                         color: FlutterFlowTheme.tertiaryColor,
@@ -515,103 +185,118 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
                       ),
                       contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     ),
-                    style: FlutterFlowTheme.bodyText1.override(
+                    style: FlutterFlowTheme.subtitle2.override(
                       fontFamily: 'Poppins',
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
                     ),
                     textAlign: TextAlign.center,
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment(0, -0.15),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
+                  ),
                 ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
-                      ),
-                    );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return TextFormField(
-                    controller: textController7,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      hintText: '[Some hint text...]',
-                      hintStyle: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          width: 200,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          width: 200,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              ),
+              Align(
+                alignment: Alignment(0, 0.01),
+                child: TextFormField(
+                  controller: textController3,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: 'photo_url',
+                    hintStyle: FlutterFlowTheme.subtitle2.override(
+                      fontFamily: 'Poppins',
                     ),
-                    style: FlutterFlowTheme.bodyText1.override(
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        width: 200,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50),
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        width: 200,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50),
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                    ),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  ),
+                  style: FlutterFlowTheme.subtitle2.override(
+                    fontFamily: 'Poppins',
+                  ),
+                  textAlign: TextAlign.center,
+                  keyboardType: TextInputType.url,
+                ),
+              ),
+              Align(
+                alignment: Alignment(0, -0.15),
+                child: TextFormField(
+                  controller: textController4,
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    isDense: true,
+                    hintText: 'display_name',
+                    hintStyle: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
                       color: Colors.black,
-                      fontSize: 20,
                       fontWeight: FontWeight.w600,
                     ),
-                    textAlign: TextAlign.center,
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment(-0.08, 1),
-              child: InkWell(
-                onDoubleTap: () async {
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Pageinscription2Widget(),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        width: 200,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50),
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
                     ),
-                  );
-                },
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.tertiaryColor,
+                        width: 200,
+                      ),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(50),
+                        bottomRight: Radius.circular(50),
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                    ),
+                    contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                  ),
+                  style: FlutterFlowTheme.subtitle2.override(
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.normal,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Align(
+                alignment: Alignment(-0.09, 0.8),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    final user = await signInAnonymously(context);
+                    if (user == null) {
+                      return;
+                    }
+                    await Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Pageiscription1Widget(),
+                      ),
+                      (r) => false,
+                    );
                   },
                   text: 'Suivant',
                   options: FFButtonOptions(
@@ -632,151 +317,112 @@ class _Pageiscription1WidgetState extends State<Pageiscription1Widget> {
                   ),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment(-0.19, -0.98),
-              child: Container(
-                width: 120,
-                height: 120,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: Image.asset(
-                  'assets/images/attractive-1869761_1920.jpg',
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment(-2.08, -0.54),
-              child: Text(
-                'Merci d\'ajouter une photo de vous \\nétant sain(e),sans filtre, sans make-up, \\nsans lunette colorée et sans cache-nez. ',
-                textAlign: TextAlign.center,
-                style: FlutterFlowTheme.bodyText1.override(
-                  fontFamily: 'Poppins',
-                  fontSize: 18,
-                  fontWeight: FontWeight.w800,
+              Align(
+                alignment: Alignment(-0.19, -0.98),
+                child: Container(
+                  width: 120,
+                  height: 120,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    'assets/images/attractive-1869761_1920.jpg',
+                    fit: BoxFit.fitHeight,
+                  ),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment(-0.12, -0.98),
-              child: Container(
-                width: 120,
-                height: 120,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: Image.asset(
-                  'assets/images/attractive-1869761_1920.jpg',
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment(0.24, -0.71),
-              child: IconButton(
-                onPressed: () {
-                  print('IconButton pressed ...');
-                },
-                icon: FaIcon(
-                  FontAwesomeIcons.camera,
-                  color: FlutterFlowTheme.tertiaryColor,
-                  size: 30,
-                ),
-                iconSize: 30,
-              ),
-            ),
-            Align(
-              alignment: Alignment(-0.09, -0.98),
-              child: Container(
-                width: 120,
-                height: 120,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: Image.asset(
-                  'assets/images/attractive-1869761_1920.jpg',
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment(0, 0.84),
-              child: StreamBuilder<List<InscriptionRecord>>(
-                stream: queryInscriptionRecord(
-                  singleRecord: true,
-                ),
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  List<InscriptionRecord> textFieldInscriptionRecordList =
-                      snapshot.data;
-                  // Customize what your widget looks like with no query results.
-                  if (snapshot.data.isEmpty) {
-                    return Container(
-                      height: 100,
-                      child: Center(
-                        child: Text('No results.'),
+              Align(
+                alignment: Alignment(-2.08, -0.54),
+                child: InkWell(
+                  onTap: () async {
+                    final user = await signInAnonymously(context);
+                    if (user == null) {
+                      return;
+                    }
+                    await Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Pageiscription1Widget(),
                       ),
+                      (r) => false,
                     );
-                  }
-                  final textFieldInscriptionRecord =
-                      textFieldInscriptionRecordList.first;
-                  return TextFormField(
-                    controller: textController8,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      hintText: '[Some hint text...]',
-                      hintStyle: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          width: 200,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: FlutterFlowTheme.tertiaryColor,
-                          width: 200,
-                        ),
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          bottomRight: Radius.circular(50),
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50),
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                    ),
+                  },
+                  child: Text(
+                    '',
+                    textAlign: TextAlign.center,
                     style: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Poppins',
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
                     ),
-                    textAlign: TextAlign.center,
-                  );
-                },
+                  ),
+                ),
               ),
-            )
-          ],
+              Align(
+                alignment: Alignment(-0.12, -0.98),
+                child: Container(
+                  width: 120,
+                  height: 120,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    'assets/images/attractive-1869761_1920.jpg',
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment(0.24, -0.71),
+                child: IconButton(
+                  onPressed: () async {
+                    final selectedMedia = await selectMedia(
+                      maxWidth: 10.00,
+                      maxHeight: 15.00,
+                    );
+                    if (selectedMedia != null &&
+                        validateFileFormat(
+                            selectedMedia.storagePath, context)) {
+                      showUploadMessage(context, 'Uploading file...',
+                          showLoading: true);
+                      final downloadUrl = await uploadData(
+                          selectedMedia.storagePath, selectedMedia.bytes);
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      if (downloadUrl != null) {
+                        setState(() => uploadedFileUrl = downloadUrl);
+                        showUploadMessage(context, 'Success!');
+                      } else {
+                        showUploadMessage(context, 'Failed to upload media');
+                      }
+                    }
+                  },
+                  icon: FaIcon(
+                    FontAwesomeIcons.camera,
+                    color: FlutterFlowTheme.tertiaryColor,
+                    size: 30,
+                  ),
+                  iconSize: 30,
+                ),
+              ),
+              Align(
+                alignment: Alignment(-0.09, -0.98),
+                child: Container(
+                  width: 120,
+                  height: 120,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    'assets/images/flower-2197679_1920.jpg',
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
